@@ -1,39 +1,54 @@
 <template>
-  <canvas id="starContainer" ref="starContainer" class="absolute w-full h-full inset-0" />
+  <div id="svgContainer" ref="svgContainer" class="absolute w-full h-full inset-0">
+    <svg />
+  </div>
 </template>
 
 <script>
 import { defineComponent, onMounted, ref } from '@vue/composition-api'
+// import { randomNormal } from 'd3-random'
+// import { select } from 'd3-selection'
+// import { range } from 'd3-transformations'
+import * as d3 from 'd3'
 
 export default defineComponent({
   setup () {
-    const starContainer = ref()
-    function resizeCanvas (canvas) {
-      canvas.width = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-      return { w: canvas.width, h: canvas.height }
-    }
+    const svgContainer = ref(null)
 
     const renderStars = delayedRender => () => {
-      const stars = starContainer.value.getContext('2d')
-      const { w, h } = resizeCanvas(starContainer.value)
-      stars.clearRect(0, 0, w, h)
+      const container = d3.select(svgContainer.value)
+      const svg = container.select('svg')
+      const w = parseInt(container.style('width'))
+      const h = parseInt(container.style('height'))
+      svg.attr('viewBox', `0 0 ${w} ${h}`)
       const area = w * h
-      const numStars = area / 8000
-      for (let i = 0; i < numStars; i++) {
-        const timeout = delayedRender ? Math.floor(Math.random() * 1000) : 0
-        setTimeout(() => {
-          stars.beginPath()
-          const randomX = Math.floor(Math.random() * w)
-          const randomY = Math.floor(Math.random() * h)
-          const size = Math.random() * 5
+      const numStars = Math.floor(area / 8000)
 
-          stars.arc(randomX, randomY, size, 0, 2 * Math.PI)
-          stars.fillStyle = '#eee'
-          stars.fill()
-          stars.closePath()
-        }, timeout)
+      const generateY = d3.randomNormal(h / 2, h * 0.2)
+      const generateX = () => {
+        const n = d3.randomNormal(w / 2, w * 0.15)() - w / 2
+        return n < 0 ? n + w : n
       }
+      const values = d3.range(numStars).map((x) => {
+        return {
+          x: generateX(),
+          y: generateY(),
+          delay: Math.floor(Math.random() * 2000),
+          size: (Math.random() * 4) + 1
+        }
+      })
+
+      svg.selectAll('circle')
+        .data(values)
+        .join('circle')
+        .attr('cx', d => d.x)
+        .attr('cy', d => d.y)
+        .attr('r', d => d.size)
+        .attr('fill', 'white')
+        .attr('fill-opacity', '0')
+        .transition()
+        .delay(d => d.delay)
+        .attr('fill-opacity', '1')
     }
 
     onMounted(() => {
@@ -42,7 +57,7 @@ export default defineComponent({
     })
 
     return {
-      starContainer
+      svgContainer
     }
   }
 })

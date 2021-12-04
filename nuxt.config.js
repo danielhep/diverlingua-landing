@@ -36,7 +36,8 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/composition-api/module'
+    '@nuxtjs/composition-api/module',
+    '@nuxtjs/google-fonts'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -50,8 +51,15 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    transpile: [
+      'd3', /d3-.*/, 'internmap', 'delaunator', 'robust-predicates'
+    ]
   },
-
+  googleFonts: {
+    families: {
+      'Source Sans Pro': true
+    }
+  },
   tailwindcss: {
     config: {
       theme: {
@@ -60,6 +68,9 @@ export default {
             'diverlingua-aqua': '#0099CC',
             'diverlingua-pink': '#F531A3',
             'diverlingua-light-blue': '#23CDF7'
+          },
+          fontFamily: {
+            header: ['Source Sans Pro']
           }
         }
       }

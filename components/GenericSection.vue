@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-96 relative flex leading-normal px-8 justify-center"
+    class="h-96 relative flex leading-normal px-8 justify-center font-header"
   >
     <div
       class="flex leading-normal mx-8 w-full z-10 max-w-screen-lg"
@@ -12,7 +12,7 @@
         </p>
       </div>
       <div class="flex-grow" />
-      <img class="" :src="require(`~/assets/${img}`)">
+      <img v-if="img !== ''" class="" :src="require(`~/assets/${img}`)">
     </div>
     <Stars v-if="stars" />
   </div>
