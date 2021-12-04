@@ -1,5 +1,5 @@
 <template>
-  <header class="h-20 shadow-lg flex flex-row z-20 relative">
+  <header class="h-20 flex flex-row z-20 relative">
     <img src="~/assets/logo.svg" class="p-2&quot;">
     <div class="flex-grow" />
     <div class="flex">

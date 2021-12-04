@@ -6,9 +6,6 @@
 
 <script>
 import { defineComponent, onMounted, ref } from '@vue/composition-api'
-// import { randomNormal } from 'd3-random'
-// import { select } from 'd3-selection'
-// import { range } from 'd3-transformations'
 import * as d3 from 'd3'
 
 export default defineComponent({
@@ -33,8 +30,9 @@ export default defineComponent({
         return {
           x: generateX(),
           y: generateY(),
-          delay: Math.floor(Math.random() * 2000),
-          size: (Math.random() * 4) + 1
+          delay: delayedRender ? Math.floor(Math.random() * 4000) : 0,
+          size: (Math.random() * 4) + 1,
+          upSpeed: (Math.random() / 2) + 0.5
         }
       })
 
