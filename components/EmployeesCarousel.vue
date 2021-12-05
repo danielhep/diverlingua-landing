@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white">
-    <div class="mx-auto py-12 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-24">
+    <div class="mx-auto py-10 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-24">
       <div class="space-y-12">
         <h2 class="text-3xl font-extrabold font-header tracking-tight sm:text-4xl">
           Meet our teachers
@@ -16,7 +16,7 @@
                 <div class="space-y-4">
                   <div class="text-lg leading-6 font-medium space-y-1">
                     <h3>{{ person.name }}</h3>
-                    <p class="text-indigo-600">
+                    <p class="text-diverlingua-aqua">
                       {{ person.role }}
                     </p>
                   </div>
