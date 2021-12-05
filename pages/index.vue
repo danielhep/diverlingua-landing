@@ -6,6 +6,7 @@
     <HomeSection3 style="box-shadow: inset 0 0 5px rgba(0,0,0,.5)" />
     <HomeSection4 />
     <HomeSection5 style="box-shadow: inset 0 0 5px rgba(0,0,0,.5)" />
+    <EmployeesCarousel />
   </div>
 </template>
 
