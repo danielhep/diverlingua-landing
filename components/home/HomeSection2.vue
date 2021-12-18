@@ -1,5 +1,5 @@
 <template>
-  <GenericSection img="imgblock1.svg" :text-on-right="true">
+  <GenericSection img="imgblock1.svg" text-side="right">
     <h3 class="text-4xl mb-4 font-bold">
       You will learn Spanish
     </h3>

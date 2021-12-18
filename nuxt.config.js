@@ -25,7 +25,6 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/vue-carousel', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -58,7 +57,8 @@ export default {
   },
   googleFonts: {
     families: {
-      'Source Sans Pro': true
+      'Source Sans 3': true,
+      'Readex Pro': true
     }
   },
   tailwindcss: {
@@ -68,10 +68,13 @@ export default {
           colors: {
             'diverlingua-aqua': '#0099CC',
             'diverlingua-pink': '#F531A3',
-            'diverlingua-light-blue': '#23CDF7'
+            'diverlingua-pink-hover': '#bf2880',
+            'diverlingua-light-blue': '#23CDF7',
+            'diverlingua-blue': '#0f7f9b'
           },
           fontFamily: {
-            header: ['Source Sans Pro']
+            header: ['Source Sans 3'],
+            small: ['Readex Pro']
           }
         }
       }

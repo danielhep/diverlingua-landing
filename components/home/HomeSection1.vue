@@ -1,6 +1,6 @@
 <template>
   <div class="bg-diverlingua-light-blue relative">
-    <GenericSection :stars="true" style="margin-bottom: -300px">
+    <GenericSection :stars="true" style="margin-bottom: -300px" text-side="right">
       <h2 class="text-6xl text-white font-bold mr-24 leading-normal bg-diverlingua-light-blue">
         <span>Learn Spanish</span><br>
         <span class="ml-12">from anywhere.</span>

@@ -1,86 +1,148 @@
 <template>
   <div class="min-h-screen relative">
     <Nav />
-    <GenericSection stars="true" class="bg-diverlingua-light-blue text-white" :full-height="true">
-      <form name="enroll" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8" netlify>
+    <GenericSection :stars="true" class="bg-diverlingua-light-blue" :full-height="true">
+      <div class="my-4">
+        <h2 class="text-7xl text-white text-bold font-header" style="text-shadow: 1px 1px 0 #0f7f9b">
+          Hello, {{ compFirstName }}!
+        </h2>
+        <div class="mt-4 text-white text-2xl text-bold" style="text-shadow: 1px 1px 0 #0f7f9b">
+          To sign up for classes, we want to know a bit about you first.<br>
+          Then, we can match you with the right teacher and the right curriculum.
+        </div>
+      </div>
+      <form class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 my-4 bg-diverlingua-blue bg-opacity-75 px-12 py-8 shadow-lg rounded-md">
         <div>
-          <label for="first-name" class="block text-sm font-medium text-gray-700">First name</label>
+          <label for="name">My name is</label>
           <div class="mt-1">
-            <input id="first-name" type="text" name="first-name" autocomplete="given-name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+            <input id="name" v-model="name" type="text" name="name" autocomplete="given-name">
           </div>
         </div>
         <div>
-          <label for="last-name" class="block text-sm font-medium text-gray-700">Last name</label>
+          <label for="email">You can email me at</label>
           <div class="mt-1">
-            <input id="last-name" type="text" name="last-name" autocomplete="family-name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+            <input id="email" type="email" name="email" autocomplete="email">
           </div>
         </div>
-        <div class="sm:col-span-2">
-          <label for="company" class="block text-sm font-medium text-gray-700">Company</label>
+        <div>
+          <label for="start-language">I know</label>
           <div class="mt-1">
-            <input id="company" type="text" name="company" autocomplete="organization" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+            <select id="start-language" type="text" name="start-language" autocomplete="language">
+              <option>Spanish</option>
+              <option>English</option>
+              <option>French</option>
+            </select>
           </div>
         </div>
-        <div class="sm:col-span-2">
-          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <div>
+          <label for="start-language">And I want to learn</label>
           <div class="mt-1">
-            <input id="email" name="email" type="email" autocomplete="email" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+            <select id="start-language" type="text" name="start-language" autocomplete="language">
+              <option>Spanish</option>
+              <option>English</option>
+              <option>French</option>
+            </select>
           </div>
         </div>
-        <div class="sm:col-span-2">
-          <label for="phone-number" class="block text-sm font-medium text-gray-700">Phone Number</label>
-          <div class="mt-1 relative rounded-md shadow-sm">
-            <div class="absolute inset-y-0 left-0 flex items-center">
-              <label for="country" class="sr-only">Country</label>
-              <select id="country" name="country" class="h-full py-0 pl-4 pr-8 border-transparent bg-transparent text-gray-500 focus:ring-indigo-500 focus:border-indigo-500 rounded-md">
-                <option>US</option>
-                <option>CA</option>
-                <option>EU</option>
-              </select>
+        <div class="col-span-2">
+          <div class="w-1/2 mx-auto">
+            <fieldset>
+              <p class="text-white mb-4">
+                Where are you at in your target language?
+              </p>
+              <legend class="sr-only">
+                Plan
+              </legend>
+              <div class="space-y-5">
+                <div v-for="level in levels" :key="level.id" class="relative flex items-start">
+                  <div class="flex items-center h-5">
+                    <input
+                      :id="level.id"
+                      :aria-describedby="`${level.id}-description`"
+                      name="level"
+                      type="radio"
+                      :checked="level.id === 'small'"
+                      class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-800"
+                    >
+                  </div>
+                  <div class="ml-3 text-sm">
+                    <label :for="level.id" class="font-medium">{{ level.name }}</label>
+                    <p :id="`${level.id}-description`" class="text-gray-100">
+                      {{ level.description }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <div class="mt-6">
+              <label for="hours">I can dedicate this much time per week:</label>
+              <div class="mt-1 relative rounded-md shadow-sm">
+                <input
+                  id="price"
+                  type="number"
+                  name="hours"
+                >
+                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                  <span class="text-gray-500 sm:text-sm">
+                    hours
+                  </span>
+                </div>
+              </div>
             </div>
-            <input
-              id="phone-number"
-              type="text"
-              name="phone-number"
-              autocomplete="tel"
-              class="py-3 px-4 block w-full pl-20 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
-              placeholder="+1 (555) 987-6543"
-            >
-          </div>
-        </div>
-        <div class="sm:col-span-2">
-          <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-          <div class="mt-1">
-            <textarea id="message" name="message" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border border-gray-300 rounded-md" />
-          </div>
-        </div>
-        <div class="sm:col-span-2">
-          <div class="flex items-start">
-            <div class="flex-shrink-0">
-              <Switch v-model="agreed" :class="[agreed ? 'bg-indigo-600' : 'bg-gray-200', 'relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500']">
-                <span class="sr-only">Agree to policies</span>
-                <span aria-hidden="true" :class="[agreed ? 'translate-x-5' : 'translate-x-0', 'inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200']" />
-              </Switch>
-            </div>
-            <div class="ml-3">
-              <p class="text-base text-gray-500">
-                By selecting this, you agree to the
-                {{ ' ' }}
-                <a href="#" class="font-medium text-gray-700 underline">Privacy Policy</a>
-                {{ ' ' }}
-                and
-                {{ ' ' }}
-                <a href="#" class="font-medium text-gray-700 underline">Cookie Policy</a>.
+            <div>
+              <p class="text-base text-white mt-4">
+                Scheduling of lessons will occur with the teacher based on your availability.
               </p>
             </div>
+            <div class="mt-4">
+              <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-diverlingua-pink hover:bg-diverlingua-pink-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Let's go!
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="sm:col-span-2">
-          <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            Let's talk
-          </button>
         </div>
       </form>
     </GenericSection>
   </div>
 </template>
+<script>
+import { defineComponent, ref, computed } from '@vue/composition-api'
+
+const levels = [
+  { id: 'beginner', name: 'Complete Beginner', description: 'I almost nothing of my target language, but I want to learn!' },
+  { id: 'basic', name: 'Basic Understanding', description: 'I know a few words or a bit of grammar, but I couldn\'t hold a conversation.' },
+  { id: 'conversational', name: 'Conversational', description: 'I can have a conversation, but I\'m not at the level I want to be.' }
+]
+
+export default defineComponent({
+  setup () {
+    const name = ref('')
+    const compFirstName = computed(() => name.value === '' ? 'language learner' : name.value.split(' ')[0])
+
+    return {
+      name,
+      compFirstName,
+      levels
+    }
+  }
+})
+</script>
+
+<style scoped>
+  form label {
+    @apply block text-base font-small text-white;
+  }
+  form input, select {
+    @apply py-2 px-4 w-full shadow-sm focus:ring-diverlingua-pink focus:border-diverlingua-pink border-gray-300 rounded-md bg-white;
+  }
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+</style>

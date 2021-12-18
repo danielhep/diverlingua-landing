@@ -5,17 +5,19 @@
   >
     <div
       class="flex leading-normal mx-8 w-full z-10 max-w-screen-lg"
-      :class="{'flex-row': textOnRight, 'flex-row-reverse': !textOnRight}"
+      :class="{'flex-row': textSide !== 'right', 'flex-row-reverse': textSide === 'right'}"
     >
-      <div class="flex flex-col justify-center" :class="{'w-full': img===''}">
+      <div class="flex flex-col justify-center" :class="{'w-full': textSide === 'full'}">
         <p class="text-2xl">
           <slot />
         </p>
       </div>
-      <div v-if="img !== ''" class="flex-grow" />
+      <div v-if="textSide !== 'full'" class="flex-grow" />
       <img v-if="img !== ''" class="" :src="require(`~/assets/${img}`)">
     </div>
-    <Stars v-if="stars" />
+    <client-only>
+      <Stars v-if="stars" />
+    </client-only>
   </div>
 </template>
 
@@ -24,6 +26,7 @@ import { defineComponent } from '@vue/composition-api'
 
 export default defineComponent({
   props: {
+    textSide: { type: String, default: 'left' },
     textOnRight: { type: Boolean, default: false },
     stars: { type: Boolean, default: false },
     img: { type: String, default: '' },

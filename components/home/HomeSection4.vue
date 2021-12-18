@@ -1,5 +1,5 @@
 <template>
-  <GenericSection img="imgblock3.svg" :text-on-right="true">
+  <GenericSection img="imgblock3.svg" text-side="right">
     <h3 class="text-4xl mb-4 font-bold">
       You will save time
     </h3>
