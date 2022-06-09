@@ -19,7 +19,7 @@
     "d3": "^7.3.0",
     "nuxt": "^2.15.7",
     "vue-carousel": "^0.18.0",
-    "yarn": "^1.22.17"
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.5",
