@@ -11,7 +11,7 @@
     "lint": "yarn lint:js"
   },
   "dependencies": {
-    "@heroicons/vue": "^1.0.5",
+    "@heroicons/vue": "^2.0.10",
     "@nuxt/content": "^1.14.0",
     "@nuxtjs/composition-api": "^0.31.0",
     "add": "^2.0.6",
